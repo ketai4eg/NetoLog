@@ -29,9 +29,7 @@ def add_doc(doc):
     user_number=input("doc number: ")
     user_name=input("user name")
     doc_new=doc
-    i=0
     for items in doc:
-        i+=1
         if user_type == items["type"] and user_number==items["number"] and user_name==items["name"]:
             print("This document is already here")
             break
@@ -41,11 +39,51 @@ def add_doc(doc):
 
 def add_dir(dir, num):
     shelf_num=input("which shelf do you want to use: ")
-    if 0<int(shelf_num)<=3:
+    if shelf_num in dir.keys():
         dir[str(shelf_num)].append(num)
         print("already there")
         return dir
     return "shelf doesn't exist"
+
+def delete_doc(doc, num ,dir):
+    for id, items in enumerate(doc):
+        if items["number"] == num:
+            del doc[id]
+            delete_shelf(dir, num)
+            return doc
+    return("This documents doesn't exist")
+
+def delete_shelf(dir,num):
+    for key, val in dir.items():
+        if num in val:
+            val.remove(num)
+            dir[key]=val
+            print(dir)
+
+def move(dir):
+    user_num=input("Doc number: ")
+    for key, val in dir.items():
+        if user_num in val:
+            user_shelf = input("which shelf do you want to use:")
+            if user_shelf in dir.keys():
+                val.remove(user_num)
+                dir[key] = val
+                dir[user_shelf].append(user_num)
+                return dir
+            else:
+                print("The shelf can be from 1 to 3")
+                break
+        else:
+            print("bad doc number!")
+            break
+
+def add_shelf(dir):
+    new_shelf=input("add your new shelf: ")
+    if new_shelf not in dir.keys():
+        dir[new_shelf]=[]
+        return dir
+    else:
+        return "this shelf already here!!"
 
 
 def main(doc, dir):
@@ -64,6 +102,14 @@ def main(doc, dir):
             print(doc_new)
             num=doc_new[len(doc_new)-1]["number"]
             print(add_dir(dir,num))
+        elif user_comand == "d":
+            user_number = input("doc number: ")
+            print(delete_doc(doc, user_number, dir))
+            print("deleted")
+        elif user_comand == "m":
+            print(move(dir))
+        elif user_comand=="as":
+            print(add_shelf(dir))
         elif user_comand=="q":
             print("Thank you")
             break
