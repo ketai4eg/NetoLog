@@ -1,4 +1,5 @@
 import pprint
+
 geo_logs = [
     {'visit1': ['Москва', 'Россия']},
     {'visit2': ['Дели', 'Индия']},
@@ -11,9 +12,9 @@ geo_logs = [
     {'visit9': ['Курск', 'Россия']},
     {'visit10': ['Архангельск', 'Россия']}
 ]
-geo_logs_up=[]
+geo_logs_up = []
 for items in geo_logs:
     for key, val in items.items():
         if "Россия" in val:
-            geo_logs_up.append({key:val})
+            geo_logs_up.append({key: val})
 pprint.pp(geo_logs_up)
