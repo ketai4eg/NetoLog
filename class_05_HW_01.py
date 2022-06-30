@@ -59,7 +59,7 @@ def delete_shelf(dir,num):
             val.remove(num)
             dir[key]=val
             print(dir)
-
+#тут и ниже не очень работает =\
 def move(dir):
     user_num=input("Doc number: ")
     for key, val in dir.items():
@@ -73,9 +73,7 @@ def move(dir):
             else:
                 print("The shelf can be from 1 to 3")
                 break
-        else:
-            print("bad doc number!")
-            break
+    print("bad doc number!")
 
 def add_shelf(dir):
     new_shelf=input("add your new shelf: ")
