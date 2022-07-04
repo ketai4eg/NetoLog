@@ -1,0 +1,3 @@
+Яйцо: {'measure': 'шт', 'quantity': 4} 
+Молоко: {'measure': 'мл', 'quantity': 200} 
+Помидор: {'measure': 'шт', 'quantity': 4} 
